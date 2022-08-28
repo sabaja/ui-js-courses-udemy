@@ -1,11 +1,13 @@
 export class Course {
-    id: string;
+    courseId: string;
     name: string;
-    description: string;
+    courseDescription: string;
+    ratingValue: number;
 
     constructor() {
-        this.id = '';
+        this.courseId = '';
         this.name = '';
-        this.description = '';
+        this.courseDescription = '';
+        this.ratingValue = 0.00;
     }
 }

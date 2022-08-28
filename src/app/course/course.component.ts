@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';;
+import { Course } from '../model/course';
 import { CourseService } from '../service/course.service';
 
 @Component({
@@ -9,15 +10,17 @@ import { CourseService } from '../service/course.service';
 export class CourseComponent implements OnInit {
 
   title: String;
-  courses: String[];
+  courses: Course[];
 
-  constructor(service: CourseService) {
-    this.title = "App for microservices "
-    this.courses = service.getCourses();
+  constructor(private service: CourseService) {
+    this.title = "App for microservices ";
+    this.courses = [];
   }
 
   ngOnInit(): void {
-
+    this.service.findAll().subscribe(data => {
+      this.courses = data;
+    })
   }
 
   getTitle() {

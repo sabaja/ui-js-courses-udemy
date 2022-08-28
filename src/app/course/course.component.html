@@ -1,1 +1,23 @@
-<p>course works!</p>
+<div>List of Courses <button backButton type="button" class="btn btn-primary">Clear Courses</button></div> 
+<div class="card my-5">
+    <div class="card-body">
+      <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col" width="20px" class="alignleft">#</th>
+            <th scope="col" width="80px" class="alignleft">Name</th>
+            <th scope="col" width="280px" class="alignleft">Description</th>
+            <th scope="col" width="280px" class="alignleft">Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let course of courses">
+            <td width="20px">{{ course.courseId }}</td>
+            <td width="80px">{{ course.name }}</td>
+            <td width="280px">{{ course.courseDescription }}</td>
+            <td width="280px">{{ course.ratingValue }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
