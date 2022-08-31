@@ -1,23 +1,44 @@
-<div>List of Courses <button backButton type="button" class="btn btn-primary">Clear Courses</button></div> 
+<div>List of Courses <button backButton type="button" class="btn btn-primary">Clear Courses</button></div>
 <div class="card my-5">
-    <div class="card-body">
-      <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col" width="20px" class="alignleft">#</th>
-            <th scope="col" width="80px" class="alignleft">Name</th>
-            <th scope="col" width="280px" class="alignleft">Description</th>
-            <th scope="col" width="280px" class="alignleft">Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let course of courses">
-            <td width="20px">{{ course.courseId }}</td>
-            <td width="80px">{{ course.name }}</td>
-            <td width="280px">{{ course.courseDescription }}</td>
-            <td width="280px">{{ course.ratingValue }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="card-body">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col" width="20px" class="alignleft">#</th>
+          <th scope="col" width="80px" class="alignleft">Name</th>
+          <th scope="col" width="280px" class="alignleft">Description</th>
+          <th scope="col" width="280px" class="alignleft">Rating</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let course of courses">
+          <td width="20px">{{ course.courseId }}</td>
+          <td width="80px">{{ course.name }}</td>
+          <td width="280px">{{ course.courseDescription }}</td>
+          <td width="280px">{{ course.ratingValue }} 
+            <app-rating [rate]="courses[0].ratingValue" [max]="5">
+              <ng-template ratingActive>
+                <i class="bi bi-star-fill" style="margin: 2px; color: #edb867"></i>
+              </ng-template>
+              <ng-template ratingInactive>
+                <i class="bi bi-star-fill" style="margin: 2px; color: #d2d2d2"></i>
+              </ng-template>
+            </app-rating> 
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
+  <section>
+    <h3>It can be used to display fractional star ratings.</h3>
+    <app-rating [rate]="courses[0].ratingValue" [max]="5">
+      <ng-template ratingActive>
+        <i class="bi bi-star-fill" style="margin: 2px; color: #edb867"></i>
+      </ng-template>
+      <ng-template ratingInactive>
+        <i class="bi bi-star-fill" style="margin: 2px; color: #d2d2d2"></i>
+      </ng-template>
+    </app-rating>
+
+  </section>
+</div>
