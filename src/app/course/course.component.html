@@ -16,19 +16,20 @@
           <td width="80px">{{ course.name }}</td>
           <td width="280px">{{ course.courseDescription }}</td>
           <td width="280px">{{ course.ratingValue }} 
-            <app-rating [rate]="courses[0].ratingValue" [max]="5">
+            <app-rating [rate]="course.ratingValue" [max]="5">
               <ng-template ratingActive>
                 <i class="bi bi-star-fill" style="margin: 2px; color: #edb867"></i>
               </ng-template>
               <ng-template ratingInactive>
                 <i class="bi bi-star-fill" style="margin: 2px; color: #d2d2d2"></i>
-              </ng-template>
+              </ng-template>  
             </app-rating> 
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+  <!--
   <section>
     <h3>It can be used to display fractional star ratings.</h3>
     <app-rating [rate]="courses[0].ratingValue" [max]="5">
@@ -40,5 +41,5 @@
       </ng-template>
     </app-rating>
 
-  </section>
+  </section> -->
 </div>
