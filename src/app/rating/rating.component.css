@@ -1,3 +1,4 @@
+
 .rating-order-wrp .d-flex {
     display: flex;
   }
@@ -23,4 +24,26 @@
   ::ng-deep label.star:hover {
     transform: rotate(0deg) scale(1.2) !important;
   }
-  
+  .rating-list {
+    display: inline-block;
+    list-style: none;
+  }
+  .rating-list li {
+    font-size: 20px;
+    float: right;
+    color: #ddd;
+    padding: 10px 5px;
+  }
+  .rating-list li:hover {
+    color: #ffd700;
+  }
+  .rating-list li:hover ~ li {
+    color: #ffd700;
+  }
+  .rating-list li.selected {
+    color: #ffd700;
+  }
+  p {
+    font-family: Lato;
+    color: red;
+  }

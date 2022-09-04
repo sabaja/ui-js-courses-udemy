@@ -6,29 +6,34 @@ import { SharedDataService } from '../service/shared-data.service';
 @Component({
   selector: 'app-course',
   templateUrl: './course.component.html',
-  styleUrls: ['./course.component.css']
+  styleUrls: ['./course.component.css'],
+  providers: [SharedDataService]
 })
+
 export class CourseComponent implements OnInit {
 
   title: String;
+  starValued: number = 0;
   courses: Course[];
 
-  constructor(private service: CourseService, private sharedSDataServive: SharedDataService) {
+  constructor(private courseService: CourseService, private sharedSDataServive: SharedDataService) {
     this.title = "App for microservices ";
     this.courses = [];
+    
   }
 
   ngOnInit(): void {
-    this.service.findAll().subscribe(data => {
+    this.courseService.findAll().subscribe(data => {
       this.courses = data;
     })
+    this.sharedSDataServive.setStarValue(this.starValued);
   }
 
   getTitle() {
     return this.title;
   }
 
-  // setRatingStar(rate: number) {
-  //   this.sharedSDataServive.setRating(rate);
-  // }
+  getStarValued() {
+    return this.starValued
+  }
 }

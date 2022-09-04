@@ -1,8 +1,10 @@
-<div class="rating-order-wrp">
-    <!--div class="d-flex rating-list align-items-center" -->
-        <div class="star w-50 rating-star">
-            <ngx-star-rating [id]="'ratingValue'" ></ngx-star-rating>
-        </div>
-    <!--/div-->
-   
+<div class="row">
+    <div class="col-sm-12">
+        <ul class="list-inline rating-list" *ngFor="let star of stars; let i= index" style="display: inline-block">
+            <li (click)="countStar(star)" id="{{'starId'+i}}" [ngClass]="{'selected': (star <= selectedStarValue)}"
+                (mouseover)="addClass(star)" (mouseout)="removeClass(star)"> ★
+                <!-- <i class="mdi mdi-star ">★</i> -->
+            </li>
+        </ul>
+    </div>
 </div>

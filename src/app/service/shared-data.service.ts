@@ -12,14 +12,15 @@ export class SharedDataService {
   private titleSource = new BehaviorSubject(this.title);
   currentTitle = this.titleSource.asObservable();
 
-  private rate = new BehaviorSubject(0);
-  currentRate = this.rate.asObservable;
+  private selectedStarValue = new BehaviorSubject(0);
+  currentStarValue = this.selectedStarValue.asObservable();
 
   setTitle(title: string) {
     this.titleSource.next(title)
   }
 
-  setRating(starRating: number) {
-    this.rate.next(starRating);
+  setStarValue(starRating: number) {
+    let star = starRating != null ? 0 : starRating;
+    this.selectedStarValue.next(star);
   }
 }
