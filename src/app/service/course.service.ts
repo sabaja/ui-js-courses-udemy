@@ -48,7 +48,7 @@ export class CourseService {
       setTimeout(() => {
         subscriber.next(allCourses_mock);
         subscriber.complete();
-      }, 1000);
+      }, 500);
     });
   }
 }

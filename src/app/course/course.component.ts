@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';;
 import { Course } from '../model/course';
 import { CourseService } from '../service/course.service';
+import { SharedDataService } from '../service/shared-data.service';
 
 @Component({
   selector: 'app-course',
@@ -12,7 +13,7 @@ export class CourseComponent implements OnInit {
   title: String;
   courses: Course[];
 
-  constructor(private service: CourseService) {
+  constructor(private service: CourseService, private sharedSDataServive: SharedDataService) {
     this.title = "App for microservices ";
     this.courses = [];
   }
@@ -26,4 +27,8 @@ export class CourseComponent implements OnInit {
   getTitle() {
     return this.title;
   }
+
+  // setRatingStar(rate: number) {
+  //   this.sharedSDataServive.setRating(rate);
+  // }
 }

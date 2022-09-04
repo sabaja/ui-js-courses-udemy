@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { SharedDataService } from '../service/shared-data.service';
+
 @Component({
   selector: 'app-rating',
   templateUrl: './rating.component.html',
@@ -11,9 +13,12 @@ export class RatingComponent implements OnInit {
   @Input() public max! : number;
   
 
-  constructor() { }
+  constructor(private sharedDataService : SharedDataService) {
+    //  sharedDataService.setRating(this.rate);
+   }
 
   ngOnInit(): void {
   }
+
 
 }
