@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core'
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Course } from '../model/course';
-import { from, Observable } from 'rxjs';
-;
+import { catchError, Observable } from 'rxjs';
+import { HttpUtilityService } from './http-utility.service';
+import { Urls } from '../model/Urls';
+import { ErrorsService } from './errors.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,45 +12,33 @@ import { from, Observable } from 'rxjs';
 export class CourseService {
 
   private allCourserUrl: string;
-  private mock: boolean = false;
+  private mock: boolean ;
+  private coursesMockedUrl: string;
+  private putCourseUrl: string;
 
-  constructor(private http: HttpClient) {
-    this.allCourserUrl = 'http://localhost:8080/courses/list'
+
+  constructor(private http: HttpClient, private httpUtility: HttpUtilityService, private urls: Urls, private errors: ErrorsService) {
+    this.allCourserUrl = urls.getCoursesUrl;
+    this.coursesMockedUrl = urls.coursesMockedUrl;
+    this.mock = urls.mock;
+    this.putCourseUrl = urls.putCourseUrl;
   }
 
-  public findAll(): Observable<Course[]> {
+  public findAllCourses(): Observable<Course[]> {
     if (this.mock === true) {
-      return this.getMockedCourses();  
+      return this.mockedCourses();
     }
     return this.http.get<Course[]>(this.allCourserUrl);
   }
 
-  private getMockedCourses(): Observable<Course[]> {
-    const allCourses_mock = JSON.parse(`[
-      {
-        "courseId" : 1,
-        "name" : "Java",
-       "courseDescription" : "aaaaaa",
-        "ratingValue" : 4.70
-      },
-      {
-        "courseId" : 2,
-        "name" : "C++",
-       "courseDescription" : "ffffff",
-        "ratingValue" : 4.00
-      },
-      {
-        "courseId" : 3,
-        "name" : "Python",
-       "courseDescription" : "asdaq",
-        "ratingValue" : 3.00
-      }
-    ]`);
-    return new Observable((subscriber) => {
-      setTimeout(() => {
-        subscriber.next(allCourses_mock);
-        subscriber.complete();
-      }, 500);
-    });
+  public modifyRating(course: Course): Observable<Course> {
+    return this.http.put<Course>(this.putCourseUrl + course.courseId, course, this.httpUtility.httpOptions)
+      .pipe(
+        catchError(this.errors.handleError('updateCourse', course))
+      );
+  }
+
+  private mockedCourses(): Observable<Course[]> {
+    return this.http.get<Course[]>(this.coursesMockedUrl)
   }
 }

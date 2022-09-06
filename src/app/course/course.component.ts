@@ -14,6 +14,7 @@ export class CourseComponent implements OnInit {
 
   title: String;
   starValued: number = 0;
+  starId: number = 0;
   courses: Course[];
 
   constructor(private courseService: CourseService, private sharedSDataServive: SharedDataService) {
@@ -23,10 +24,11 @@ export class CourseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.courseService.findAll().subscribe(data => {
+    this.courseService.findAllCourses().subscribe(data => {
       this.courses = data;
     })
     this.sharedSDataServive.setStarValue(this.starValued);
+    this.sharedSDataServive.setStarId(this.starId);
   }
 
   getTitle() {

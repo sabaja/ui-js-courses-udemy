@@ -1,0 +1,20 @@
+[
+    {
+        "courseId": 1,
+        "name": "Java",
+        "courseDescription": "aaaaaa",
+        "ratingValue": 4.70
+    },
+    {
+        "courseId": 2,
+        "name": "C++",
+        "courseDescription": "ffffff",
+        "ratingValue": 4.00
+    },
+    {
+        "courseId": 3,
+        "name": "Python",
+        "courseDescription": "asdaq",
+        "ratingValue": 3.00
+    }
+]
