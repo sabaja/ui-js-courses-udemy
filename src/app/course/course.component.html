@@ -15,8 +15,8 @@
           <td width="20px">{{ course.courseId }}</td>
           <td width="80px">{{ course.name }}</td>
           <td width="280px">{{ course.courseDescription }}</td>
-          <td width="280px">{{ course.ratingValue }} 
-            <app-rating [selectedStarValue]="course.ratingValue" [selectedCourseId]="course.courseId" ></app-rating> 
+          <td width="280px">
+              <app-rating [selectedStarValue]="course.ratingValue" [selectedCourseId]="course.courseId" ></app-rating> 
           </td>
         </tr>
       </tbody>

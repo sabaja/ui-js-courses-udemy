@@ -7,7 +7,7 @@ export class Urls {
     private _getCoursesUrl: string = "http://localhost:8080/courses/list";
     private _coursesMockedUrl: string = 'assets/courses.json';
     private _mock: boolean = false;
-    private _putCourseUrl: string = "http://localhost:8080/courses/course/rating";
+    private _putCourseUrl: string = "http://localhost:8080/courses/course/rating/";
 
     get getCoursesUrl() {
         return this._getCoursesUrl;

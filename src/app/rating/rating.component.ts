@@ -39,7 +39,11 @@ export class RatingComponent implements OnDestroy  {
     this.courseService.modifyRating(course).pipe(
       take(1)
    ).subscribe( (c: Course) => {
-    tap(_ => this.logService.log(`updated course with id=${c.courseId}`)),
+    tap(_ => {
+      this.logService.log(`updated course with id=${c.courseId}, and value=${c.ratingValue}`);
+      this.removeClass(5);
+      this.addClass(c.ratingValue);
+  }),
     catchError(this.errors.handleError<any>('updateCourse'))
    });
   }
