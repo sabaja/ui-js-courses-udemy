@@ -14,14 +14,16 @@ export class CourseService {
   private allCourserUrl: string;
   private mock: boolean ;
   private coursesMockedUrl: string;
-  private putCourseUrl: string;
+  private putRatingUrl: string;
+  private putEventRatingUrl: string;
 
 
   constructor(private http: HttpClient, private httpUtility: HttpUtilityService, private urls: Urls, private errors: ErrorsService) {
     this.allCourserUrl = urls.getCoursesUrl;
     this.coursesMockedUrl = urls.coursesMockedUrl;
     this.mock = urls.mock;
-    this.putCourseUrl = urls.putCourseUrl;
+    this.putRatingUrl = urls.putRatingUrl;
+    this.putEventRatingUrl = urls.putEventRatingUrl;
   }
 
   public findAllCourses(): Observable<Course[]> {
@@ -32,7 +34,11 @@ export class CourseService {
   }
 
   public modifyRating(course: Course): Observable<Course> {
-    return this.http.put<Course>(this.putCourseUrl + course.courseId, course, this.httpUtility.httpOptions)
+    /* senza evento */
+    // return this.http.put<Course>(this.putRatingUrl + course.courseId, course, this.httpUtility.httpOptions)
+
+    /* con evento */
+    return this.http.put<Course>(this.putEventRatingUrl + course.courseId, course, this.httpUtility.httpOptions)
       .pipe(
         catchError(this.errors.handleError('updateCourse', course))
       );

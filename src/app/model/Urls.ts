@@ -4,10 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class Urls {
-    private _getCoursesUrl: string = "http://localhost:8080/courses/list";
+    private _getCoursesUrl: string = "http://localhost:8000/api/courses/list";
     private _coursesMockedUrl: string = 'assets/courses.json';
     private _mock: boolean = false;
-    private _putCourseUrl: string = "http://localhost:8080/courses/course/rating/";
+    private _putRatingUrl: string = "http://localhost:8000/api/courses/course/rating/";
+    private _putEventRatingUrl: string = "http://localhost:8000/api/courses/course/rating-event/";
 
     get getCoursesUrl() {
         return this._getCoursesUrl;
@@ -21,7 +22,11 @@ export class Urls {
         return this._mock;
     }
 
-    get putCourseUrl() {
-        return this._putCourseUrl;
+    get putRatingUrl() {
+        return this._putRatingUrl;
+    }
+
+    get putEventRatingUrl() {
+        return this._putEventRatingUrl;
     }
 }
