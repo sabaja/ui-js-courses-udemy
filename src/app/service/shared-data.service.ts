@@ -22,6 +22,10 @@ export class SharedDataService {
     this.titleSource.next(title)
   }
 
+  getTitle() {
+    return this.titleSource.getValue();
+  }
+
   setStarValue(starRating: number) {
     let star = starRating != null ? 0 : starRating;
     this.selectedStarValue.next(star);

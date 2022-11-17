@@ -10,6 +10,7 @@ import { BackButtonDirective } from './directive/back-button.directive';
 import { RatingComponent } from './rating/rating.component';
 import { NgxStarRatingModule } from 'ngx-star-rating'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HomepageComponent,
     BackButtonDirective,
     RatingComponent,
-    
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
