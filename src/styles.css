@@ -192,18 +192,26 @@ pre.prettyprint {
 	overflow: auto;
 	max-height: 400px;
 }
+
 code{
     border:1px solid #ddd;
     padding: 2px;
     border-radius: 2px;
 }
 
+li.dropdown:last-child .dropdown-menu {
+    right: 0;
+    left: auto;
+  }
+
 #login-dp{
     min-width: 250px;
     padding: 14px 14px 0;
+    
     overflow:hidden;
-    background-color:rgba(255,255,255,.8);
+    background-color:rgba(21, 20, 20, .8);                                                                                                                                                                                                                                                                                                                                                                                           
 }
+
 #login-dp .help-block{
     font-size:12px    
 }
@@ -217,7 +225,7 @@ code{
     margin:12px 0    
 }
 #login-dp .social-buttons a{
-    width: 49%;
+    width: 39%;
 }
 #login-dp .form-group {
     margin-bottom: 10px;

@@ -11,6 +11,7 @@ import { RatingComponent } from './rating/rating.component';
 import { NgxStarRatingModule } from 'ngx-star-rating'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
+import { GoogleLoginComponent } from './google-login/google-login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     HomepageComponent,
     BackButtonDirective,
     RatingComponent,
-    NavbarComponent
+    NavbarComponent,
+    GoogleLoginComponent
   ],
   imports: [
     BrowserModule,
