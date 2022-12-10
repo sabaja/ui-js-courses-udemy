@@ -3,6 +3,7 @@
     <li>
         <div class="row">
             <div [hidden]="authenticated()" class="col-md-12">
+            <!-- <div class="col-md-12"> -->
                 <!-- Login via
                 <div class="social-buttons">
                      <a class="btn btn-primary" style="background-color: #dd4b39;" href="#!" role="button" ><i class="fab fa-google"></i></a> 
@@ -13,20 +14,21 @@
                 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8"
                     id="login-nav">
                     <div class="form-group">
-                        <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail2"
-                            placeholder="Email address" required>
+                        <label class="sr-only" for="username">Email address</label>
+                        <input type="email" class="form-control" id="username"
+                            placeholder="Email address" required [(ngModel)]="credentials.username">
                     </div>
                     <div class="form-group">
-                        <label class="sr-only" for="exampleInputPassword2">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword2"
-                            placeholder="Password" required>
+                        <label class="sr-only" for="password">Password</label>
+                        <input type="password" class="form-control" id="password"
+                            placeholder="Password" required [(ngModel)]="credentials.password">
                         <div class="help-block text-right"><a href="">Forget the password ?</a>
                         </div>
                     </div>
                     <div class="form-group buttons-spacing-center">
-                        <button type="submit" class="btn btn-primary btn-block" routerLinkActive="active" routerLink="/login">Sign in</button>
-                        <!-- <button type="button" class="btn btn-info" (click)="logout()">Sign out</button> -->
+                        <!-- <button type="submit" class="btn btn-primary btn-block" routerLinkActive="active" routerLink="/login">Sign in</button> -->
+                        <button type="submit" class="btn btn-primary btn-block" routerLink="/login">Sign in</button>
+                        <button type="button" class="btn btn-info" (click)="logout()">Sign out</button>
                     </div>
                     <div class="checkbox">
                         <label class="keep-me-white">

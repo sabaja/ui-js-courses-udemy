@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Urls } from '../model/Urls';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainLoginService {
 
-  authenticated = false;
+  private _authenticated: boolean = false;
+  private userUrl: string;
 
-  constructor(private http: HttpClient) { 
-    this.http = http;
+  constructor(private http: HttpClient, private urls: Urls) {
+    this.userUrl = this.urls.userUrl;
   }
 
   public authenticate(credentials: any, callback: any) {
@@ -19,14 +21,22 @@ export class MainLoginService {
       // + btoa(credentials.username + ':' + credentials.password)
     } : {});
 
-    this.http.get('user', { headers: headers }).subscribe(response => {
+    this.http.get(this.userUrl, { headers: headers }).subscribe(response => {
       if (response) {
-        this.authenticated = true;
+        this._authenticated = true;
       } else {
-        this.authenticated = false;
+        this._authenticated = false;
       }
       return callback && callback();
     });
 
+  }
+
+  public get authenticated() {
+    return this._authenticated;
+  }
+
+  public set authenticated(authenticate: boolean) {
+    this._authenticated = authenticate;
   }
 }

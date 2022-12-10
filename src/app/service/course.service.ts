@@ -19,7 +19,7 @@ export class CourseService {
 
 
   constructor(private http: HttpClient, private httpUtility: HttpUtilityService, private urls: Urls, private errors: ErrorsService) {
-    this.allCourserUrl = urls.getCoursesUrl;
+    this.allCourserUrl = urls.coursesUrl;
     this.coursesMockedUrl = urls.coursesMockedUrl;
     this.mock = urls.mock;
     this.putRatingUrl = urls.putRatingUrl;
