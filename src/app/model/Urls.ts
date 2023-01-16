@@ -4,11 +4,14 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class Urls {
-    private _getCoursesUrl: string = "http://localhost:8000/api/courses/list";
+    private readonly API = "http://localhost:8000/api/"
+
+    private _getCoursesUrl: string = this.API + "courses/list";
     private _coursesMockedUrl: string = 'assets/courses.json';
     private _mock: boolean = false;
-    private _putRatingUrl: string = "http://localhost:8000/api/courses/course/rating/";
-    private _putEventRatingUrl: string = "http://localhost:8000/api/courses/course/rating-event/";
+    private _putRatingUrl: string = this.API + "courses/course/rating/";
+    private _putEventRatingUrl: string = this.API + "courses/course/rating-event/";
+    private _user: string = this.API + "/auth/user";
 
     get getCoursesUrl() {
         return this._getCoursesUrl;
