@@ -16,7 +16,7 @@ export class HttpInterceptorService implements HttpInterceptor {
         if (this.authService.isUserSignedin() && token) {
             const request = req.clone({
                 headers: new HttpHeaders({
-                    'Authorization': `Bear  + ${token}`
+                    'Authorization': `Bear ${token}`
                 })
             });
             return next.handle(request).pipe(
