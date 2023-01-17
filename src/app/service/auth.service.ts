@@ -12,8 +12,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AuthService {
 
   authenticated = false;
+  private baseUrl = 'http://localhost:8080/greet';
 
- constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   public authenticate(credentials: any, callback: any) {
 
