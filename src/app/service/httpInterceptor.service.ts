@@ -11,10 +11,12 @@ export class HttpInterceptorService implements HttpInterceptor {
     constructor(private authService: AuthService) { }
  
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (this.authService.isUserSignedin() && this.authService.getToken()) {
+        const token = this.authService.getToken();
+      
+        if (this.authService.isUserSignedin() && token) {
             const request = req.clone({
                 headers: new HttpHeaders({
-                    'Authorization': this.authService.getToken()
+                    'Authorization': `Bear  + ${token}`
                 })
             });
             return next.handle(request).pipe(
@@ -25,9 +27,7 @@ export class HttpInterceptorService implements HttpInterceptor {
 					return throwError(err);
 				})
 			);
-        }
+    }
        
 		return next.handle(req);
-    }
-
 }
