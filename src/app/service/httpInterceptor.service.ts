@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { AuthService } from './auth.service';
  
+//https://dev-academy.com/how-to-use-angular-interceptors-to-manage-http-requests/#what-is-an-angular-interceptor-after-all
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
  
