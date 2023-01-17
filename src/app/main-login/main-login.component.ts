@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Credentials } from '../model/credentials';
-import { MainLoginService } from '../service/main-login.service';
+import { AuthService } from '../service/auth.service';
 
 @Component({
   selector: 'app-main-login',
@@ -13,8 +13,8 @@ export class MainLoginComponent implements OnInit {
 
   greeting = {};
 
-  constructor(private loginService: MainLoginService, private http: HttpClient, private router: Router, private credentials: Credentials) {
-    this.loginService.authenticate(undefined, undefined);
+  constructor(private authService: AuthService, private http: HttpClient, private router: Router, private credentials: Credentials) {
+    this.authService.authenticate(undefined, undefined);
     
   }
 
@@ -23,15 +23,15 @@ export class MainLoginComponent implements OnInit {
 
   logout() {
     this.http.post('logout', {}).subscribe(() => {
-      this.loginService.authenticated = false;
+      this.authService.authenticated = false;
       this.router.navigateByUrl('login')
     });
   }
 
-  authenticated() { return this.loginService.authenticated; }
+  authenticated() { return this.authService.authenticated; }
 
   login() {
-    this.loginService.authenticate(this.credentials, () => {
+    this.authService.authenticate(this.credentials, () => {
         this.router.navigateByUrl('login');
     });
     return false;
