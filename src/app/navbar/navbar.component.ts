@@ -8,13 +8,19 @@ import { SharedDataService } from '../service/shared-data.service';
 })
 export class NavbarComponent implements OnInit {
 
-  title? : string;
+  title?: string;
+  isSignedIn?: boolean;
 
-  constructor(private sharedDataService : SharedDataService) { 
+  constructor(private sharedDataService: SharedDataService) {
     this.title = this.sharedDataService.getTitle();
   }
 
+  onIsSignedInChange(isSignedIn: boolean) {
+    this.isSignedIn = isSignedIn;
+  }
+
   ngOnInit(): void {
+    
   }
 
 }

@@ -2,7 +2,7 @@
 <ul id="login-dp" class="dropdown-menu dropdown-menu-right">
     <li>
         <div class="row">
-            <div [hidden]="authenticated()" class="col-md-12">
+            <div *ngIf="!authenticated()" class="col-md-12">
                 <!-- Login via
                 <div class="social-buttons">
                      <a class="btn btn-primary" style="background-color: #dd4b39;" href="#!" role="button" ><i class="fab fa-google"></i></a> 
@@ -33,15 +33,20 @@
                             <input type="checkbox"> keep me logged-in
                         </label>
                     </div>
-
+                    <div class="form-group bottom text-center">
+                        New here ? <a href="#"><b>Join Us</b></a>
+                    </div>
                 </form>
             </div>
            
-            <div class="bottom text-center">
-                New here ? <a href="#"><b>Join Us</b></a>
-            </div>
         </div>
-        <div [hidden]="!authenticated()" class="col-md-12">Logged</div>
+        <div *ngIf="authenticated()" class="col-md-12">
+            <label class="keep-me-white">
+            <p>Welcome back, {{ signedinUser }}!</p>
+            
+            <p><a class="city" style="text-decoration: underline; cursor: pointer;" (click)="doSignout()">Signout</a></p>
+        </label>
+        </div>
         <!-- <div class="alert alert-danger" [hidden]="!error">There was a problem logging in. Please try again. </div> -->
     </li>
 </ul>

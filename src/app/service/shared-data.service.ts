@@ -18,6 +18,8 @@ export class SharedDataService {
   private selectedCourseId = new BehaviorSubject(0);
   currentStarId = this.selectedCourseId.asObservable();
 
+  private isSignedIn = new BehaviorSubject(false);
+
   setTitle(title: string) {
     this.titleSource.next(title)
   }
@@ -31,9 +33,16 @@ export class SharedDataService {
     this.selectedStarValue.next(star);
   }
 
-
   setStarId(courseId: number) {
     let id = courseId != null ? 0 : courseId;
     this.selectedCourseId.next(id);
+  }
+
+  getIsSignedIn() {
+    return this.isSignedIn.getValue();
+  }
+
+  setIsSignedIn(value: boolean) {
+    this.isSignedIn.next(value);
   }
 }

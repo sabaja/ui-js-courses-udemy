@@ -46,10 +46,12 @@
                 <span class="navbar-text">Already have an account?</span>
             </li>
             <li class="dropdown">
-
+<!-- 
                 <a href="#" class="dropdown-toggle city" data-toggle="dropdown"><b class="city">Login</b> <span
-                        class="caret city"></span></a>
-                <app-main-login></app-main-login>
+                        class="caret city"></span></a>  <i class="fa-solid fa-face-smile-hearts"></i> <i class="fa-solid fa-face-dotted"></i>   <i class="fa-regular fa-user"></i>-->
+                      <span style="color: white">{{isSignedIn}}</span> 
+                       <a href="#" class="dropdown-toggle city" data-toggle="dropdown" ><i class="fa-user" [ngClass]="{'fa-duotone' : isSignedIn, 'fa-regular' : !isSignedIn}"></i> <span class="caret city"></span></a>
+                <app-main-login (isSignedInChange)="onIsSignedInChange($event)"> </app-main-login>
             </li>
             <!-- </ul> -->
         </div>

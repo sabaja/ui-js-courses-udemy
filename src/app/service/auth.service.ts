@@ -12,7 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class AuthService {
 
   authenticated = false;
-  private baseUrl = 'http://localhost:8088/auth';
+  private baseUrl = 'http://localhost:8088/auth/';
 
   constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
@@ -23,7 +23,7 @@ export class AuthService {
       // + btoa(credentials.username + ':' + credentials.password)
     } : {});
 
-    this.http.get('user', { headers: headers }).subscribe(response => {
+    this.http.get(this.baseUrl + 'user',  { }).subscribe(response => {
       if (response) {
         this.authenticated = true;
       } else {
@@ -36,7 +36,7 @@ export class AuthService {
     signin(request: Request): Observable<any> {
 		return this.http.post<any>(this.baseUrl + 'signin', request, {headers: new HttpHeaders({ 'Content-Type': 'application/json' })}).pipe(map((resp) => {
 			sessionStorage.setItem('user', request.userName);
-			sessionStorage.setItem('token', 'HTTP_TOKEN ' + resp.token);
+			sessionStorage.setItem('token', 'Bear ' + resp.token);
 			return resp;
 		}));
 	}
