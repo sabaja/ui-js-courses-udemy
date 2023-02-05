@@ -51,7 +51,7 @@ export class AuthService {
 		sessionStorage.removeItem('user');
 		sessionStorage.removeItem('token');
 
-		this.router.navigateByUrl('signin');
+		this.router.navigateByUrl('');
 	}
 
 	isUserSignedin() {

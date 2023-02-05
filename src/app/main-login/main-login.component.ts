@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Credentials } from '../model/credentials';
 import { AuthService } from '../service/auth.service';
 import { SharedDataService } from '../service/shared-data.service';
+import { Request } from '../model/request';
 
 @Component({
   selector: 'app-main-login',
@@ -17,15 +18,21 @@ export class MainLoginComponent implements OnInit {
 
   signedinUser: string = '';
 
+  @ViewChild('usr') email: ElementRef<HTMLInputElement> = {} as ElementRef;
+  @ViewChild('pwd') pwd: ElementRef<HTMLInputElement> = {} as ElementRef;
 
+  username: string = "";
+  password: string = "";
+  
+	error: string = '';
 
   constructor(private authService: AuthService, private http: HttpClient, private router: Router, private credentials: Credentials, private sharedService: SharedDataService) {
     // this.authService.authenticate(undefined, undefined);
 
-    // this.isSignedin = this.authService.isUserSignedin();
-    // this.signedinUser = this.authService.getSignedinUser();
-    this.isSignedIn = false;
-    this.signedinUser = 'Gaia153';
+    this.isSignedIn = this.authService.isUserSignedin();
+    this.signedinUser = this.authService.getSignedinUser();
+    // this.isSignedIn = true;
+    // this.signedinUser = 'Gaia153';
 
   }
 
@@ -62,11 +69,20 @@ export class MainLoginComponent implements OnInit {
   }
 
   login() {
-    // this.authService.authenticate(this.credentials, () => {
-    //     this.router.navigateByUrl('login');
-    // });
-    return false;
-  }
+  const username = this.email.nativeElement.value;
+  const password = this.pwd.nativeElement.value;
+		if(username !== '' && username !== null && password !== '' && password !== null) {
+			const request: Request = { userName: username, userPwd: password};
+
+			this.authService.signin(request).subscribe({
+				//this.router.navigate(['/home']);
+				next : result => this.router.navigateByUrl(''),
+				error : () => 'Either invalid credentials or something went wrong'
+			});
+		} else {
+			this.error = 'Invalid Credentials';
+		}
+	}
 
   doSignout() {
     this.authService.signout();
